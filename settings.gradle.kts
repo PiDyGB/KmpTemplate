@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 rootProject.name = "mynasadailypics"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
