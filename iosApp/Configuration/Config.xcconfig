@@ -1,0 +1,7 @@
+TEAM_ID=
+
+PRODUCT_NAME=mynasadailypics
+PRODUCT_BUNDLE_IDENTIFIER=com.pidygb.mynasadailypics.mynasadailypics.mynasadailypics$(TEAM_ID)
+
+CURRENT_PROJECT_VERSION=1
+MARKETING_VERSION=1.0
