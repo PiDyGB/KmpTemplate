@@ -1,0 +1,24 @@
+CREATE TABLE PictureEntity (
+    date TEXT NOT NULL PRIMARY KEY,
+    explanation TEXT,
+    hdUrl TEXT,
+    mediaType TEXT,
+    serviceVersion TEXT,
+    title TEXT NOT NULL,
+    url TEXT NOT NULL
+);
+
+
+-- Inserts a new sample. If a sample with the same date already exists, it will be replaced.
+insertPictureEntity:
+INSERT OR REPLACE INTO PictureEntity(date, explanation, hdUrl, mediaType, serviceVersion, title, url)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+-- Selects all samples from the table, ordered by date in descending order (newest first).
+selectAllPicturesEntities:
+SELECT * FROM PictureEntity
+ORDER BY date DESC;
+
+-- Deletes all records from the Sample table.
+deleteAllPicturesEntities:
+DELETE FROM PictureEntity;

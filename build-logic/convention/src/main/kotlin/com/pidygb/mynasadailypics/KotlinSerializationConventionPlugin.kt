@@ -17,7 +17,7 @@ class KotlinSerializationConventionPlugin : Plugin<Project> {
             extensions.configure<KotlinMultiplatformExtension> {
                 sourceSets {
                     commonMain.dependencies {
-                        implementation(libs.findLibrary("kotlinx.serialization.json").get())
+                        implementation(libs.findLibrary("kotlinx-serialization-json").get())
                     }
                 }
             }

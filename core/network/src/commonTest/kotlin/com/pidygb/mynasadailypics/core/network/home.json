@@ -1,0 +1,229 @@
+{
+    "page": {
+        "name": "Prada Homepage",
+        "language": "en-US",
+        "components": [
+            {
+                "type": "teaser",
+                "id": "teaser-fw-2025",
+                "data": {
+                    "imageUrl": "https://picsum.photos/seed/promo1/1920/1080",
+                    "headline": "Women's Fall/Winter 2025",
+                    "description": "Discover the new collection, a study in contrasts and contemporary elegance.",
+                    "cta": {
+                        "text": "Explore the Collection",
+                        "url": "prada://collection?id=fw2025&department=woman"
+                    }
+                }
+            },
+            {
+                "type": "product_highlight",
+                "id": "product-highlight-bag",
+                "data": {
+                    "imageUrl": "https://picsum.photos/seed/bag1/800/1000",
+                    "productName": "Prada Re-Edition 2005",
+                    "cta": {
+                        "text": "Shop Now",
+                        "url": "prada://product?sku=re-edition-2005"
+                    }
+                }
+            },
+            {
+                "type": "teaser",
+                "id": "teaser-mw-2025",
+                "data": {
+                    "imageUrl": "https://picsum.photos/seed/promo2/1920/1080",
+                    "headline": "Men's Spring/Summer 2025",
+                    "description": "A new vision of masculinity, defined by sharp silhouettes and innovative materials.",
+                    "cta": {
+                        "text": "Discover the Show",
+                        "url": "prada://collection?id=ss2025&department=man"
+                    }
+                }
+            },
+            {
+                "type": "carousel",
+                "id": "carousel-pradasphere",
+                "data": {
+                    "headline": "Pradasphere News",
+                    "items": [
+                        {
+                            "id": "news-1",
+                            "imageUrl": "https://picsum.photos/seed/news1/600/400",
+                            "title": "The Art of Craftsmanship",
+                            "description": "A deep dive into the techniques behind our most iconic pieces.",
+                            "cta": {
+                                "text": "Read More",
+                                "url": "prada://article?slug=art-of-craftsmanship"
+                            }
+                        },
+                        {
+                            "id": "news-2",
+                            "imageUrl": "https://picsum.photos/seed/news2/600/400",
+                            "title": "Prada at the Met Gala",
+                            "description": "See the exclusive looks worn on the red carpet.",
+                            "cta": {
+                                "text": "View Gallery",
+                                "url": "prada://article?slug=met-gala-2025"
+                            }
+                        },
+                        {
+                            "id": "news-3",
+                            "imageUrl": "https://picsum.photos/seed/news3/600/400",
+                            "title": "Sustainability Commitment",
+                            "description": "Our ongoing efforts to create a more sustainable future.",
+                            "cta": {
+                                "text": "Learn More",
+                                "url": "prada://static?page=sustainability"
+                            }
+                        },
+                        {
+                            "id": "news-4",
+                            "imageUrl": "https://picsum.photos/seed/news4/600/400",
+                            "title": "New Store Opening: Tokyo",
+                            "description": "Explore our new flagship store in the heart of Ginza.",
+                            "cta": {
+                                "text": "Visit Us",
+                                "url": "prada://store?id=tokyo-ginza"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "product_highlight",
+                "id": "product-highlight-shoes",
+                "data": {
+                    "imageUrl": "https://picsum.photos/seed/shoe1/800/1000",
+                    "productName": "Monolith Brushed Leather Loafers",
+                    "cta": {
+                        "text": "Discover",
+                        "url": "prada://product?sku=monolith-loafers"
+                    }
+                }
+            },
+            {
+                "type": "department_explorer",
+                "id": "dept-explorer-main",
+                "data": {
+                    "headline": "Prada Explore",
+                    "cta_woman": {
+                        "text": "Shop Woman",
+                        "url": "prada://products?department=woman"
+                    },
+                    "cta_man": {
+                        "text": "Shop Man",
+                        "url": "prada://products?department=man"
+                    }
+                }
+            },
+            {
+                "type": "product_highlight",
+                "id": "product-highlight-sunglasses",
+                "data": {
+                    "imageUrl": "https://picsum.photos/seed/sun1/800/1000",
+                    "productName": "Symbole Sunglasses",
+                    "cta": {
+                        "text": "View Details",
+                        "url": "prada://product?sku=symbole-sunglasses"
+                    }
+                }
+            }
+        ],
+        "footer": {
+            "id": "main-footer",
+            "sections": [
+                {
+                    "title": "Company",
+                    "links": [
+                        {
+                            "text": "Prada Group",
+                            "url": "prada://static?page=group"
+                        },
+                        {
+                            "text": "Fondazione Prada",
+                            "url": "prada://static?page=fondazione"
+                        },
+                        {
+                            "text": "Luna Rossa",
+                            "url": "prada://static?page=luna-rossa"
+                        },
+                        {
+                            "text": "Sustainability",
+                            "url": "prada://static?page=sustainability"
+                        },
+                        {
+                            "text": "Careers",
+                            "url": "prada://static?page=careers"
+                        }
+                    ]
+                },
+                {
+                    "title": "Legal",
+                    "links": [
+                        {
+                            "text": "Terms and Conditions",
+                            "url": "prada://static?page=terms"
+                        },
+                        {
+                            "text": "Privacy Policy",
+                            "url": "prada://static?page=privacy"
+                        },
+                        {
+                            "text": "Cookie Policy",
+                            "url": "prada://static?page=cookies"
+                        },
+                        {
+                            "text": "Sitemap",
+                            "url": "prada://static?page=sitemap"
+                        }
+                    ]
+                },
+                {
+                    "title": "Customer Service",
+                    "links": [
+                        {
+                            "text": "Contact Us",
+                            "url": "prada://support?page=contact"
+                        },
+                        {
+                            "text": "Shipping",
+                            "url": "prada://support?page=shipping"
+                        },
+                        {
+                            "text": "Returns",
+                            "url": "prada://support?page=returns"
+                        },
+                        {
+                            "text": "FAQ",
+                            "url": "prada://support?page=faq"
+                        },
+                        {
+                            "text": "Store Locator",
+                            "url": "prada://stores"
+                        }
+                    ]
+                }
+            ],
+            "socials": [
+                {
+                    "name": "twitter",
+                    "url": "https://twitter.com/prada"
+                },
+                {
+                    "name": "instagram",
+                    "url": "https://instagram.com/prada"
+                },
+                {
+                    "name": "facebook",
+                    "url": "https://facebook.com/prada"
+                },
+                {
+                    "name": "youtube",
+                    "url": "https://youtube.com/prada"
+                }
+            ],
+            "copyright": "© PRADA 2025. All rights reserved."
+        }
+    }
+}

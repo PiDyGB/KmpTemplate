@@ -37,8 +37,6 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
                         isStatic = true
                     }
                 }
-
-                jvm("desktop")
             }
             extensions.configure<LibraryExtension> {
                 namespace = "com.pidygb.mynasadailypics." + path.split(":").drop(1).joinToString(".")

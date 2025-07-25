@@ -26,9 +26,6 @@ class KotlinMultiplatformTestConventionPlugin : Plugin<Project> {
                         implementation(dependencies.platform(libs.findLibrary("koin-bom").get()))
                         implementation(libs.findLibrary("koin-test").get())
                     }
-                    findByName("desktopTest")?.dependencies {
-                        implementation(libs.findLibrary("kotlinx-coroutinesSwing").get())
-                    }
                 }
             }
             extensions.configure<BaseExtension> {

@@ -19,7 +19,6 @@ class KotlinComposeMultiplatformLibraryConventionPlugin : Plugin<Project> {
         with(target) {
             alias(libs.findPlugin("composeMultiplatform"))
             alias(libs.findPlugin("composeCompiler"))
-            alias(libs.findPlugin("composeHotReload"))
             alias(libs.findPlugin("mynasadailypics-kotlinMultiplatformLibrary"))
 
             val composeDeps = extensions.getByType(ComposeExtension::class.java).dependencies

@@ -27,11 +27,6 @@ class KotlinComposeMultiplatformTestConventionPlugin : Plugin<Project> {
                         @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                         implementation(composeDeps.uiTest)
                     }
-
-                    // Adds the desktop test dependency
-                    findByName("desktopTest")?.dependencies {
-                        implementation(composeDeps.desktop.currentOs)
-                    }
                 }
                 androidTarget {
                     @OptIn(ExperimentalKotlinGradlePluginApi::class)
