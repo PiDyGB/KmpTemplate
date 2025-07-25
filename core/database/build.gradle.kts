@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.mynasadailypics.kotlinMultiplatformLibrary)
     alias(libs.plugins.sqldelight)
     alias(libs.plugins.mynasadailypics.kotlinMultiplatformTest)
+    alias(libs.plugins.mynasadailypics.kotlinxSerialization)
 }
 
 kotlin {
@@ -11,6 +12,7 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(projects.core.model)
+            implementation(projects.core.common)
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(libs.koin.core)
             implementation(libs.sqldelight.runtime)
@@ -26,7 +28,7 @@ kotlin {
 
 sqldelight {
     databases {
-        create("PicturesDatabase") {
+        create("PageDatabase") {
             packageName.set("com.pidygb.mynasadailypics.core.database")
         }
     }

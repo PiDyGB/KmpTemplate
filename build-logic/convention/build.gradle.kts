@@ -55,9 +55,9 @@ gradlePlugin {
             implementationClass = "com.pidygb.mynasadailypics.KotlinComposeMultiplatformTestConventionPlugin"
         }
 
-        register("kotlinSerialization") {
+        register("kotlinxSerialization") {
             id = libs.plugins.mynasadailypics.kotlinxSerialization.get().pluginId
-            implementationClass = "com.pidygb.mynasadailypics.KotlinSerializationConventionPlugin"
+            implementationClass = "com.pidygb.mynasadailypics.KotlinxSerializationConventionPlugin"
         }
     }
 }

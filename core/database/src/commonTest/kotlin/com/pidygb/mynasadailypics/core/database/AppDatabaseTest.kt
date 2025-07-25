@@ -1,20 +1,31 @@
 package com.pidygb.mynasadailypics.core.database
 
 import app.cash.sqldelight.db.SqlDriver
+import com.pidygb.mynasadailypics.core.model.Footer
+import com.pidygb.mynasadailypics.core.model.FooterSection
+import com.pidygb.mynasadailypics.core.model.Social
 import com.pidygb.mynasadailypics.core.testing.createDriver
+import kotlinx.serialization.json.Json
 import kotlin.test.*
 
 class AppDatabaseTest {
 
     private lateinit var driver: SqlDriver
-    private lateinit var database: PicturesDatabase
-    private lateinit var queries: PicturesDatabaseQueries
+    private lateinit var database: PageDatabase
+    private lateinit var queries: PageDatabaseQueries
 
     @BeforeTest
     fun setup() {
-        driver = createDriver(PicturesDatabase.Schema)
-        database = PicturesDatabase(driver)
-        queries = database.picturesDatabaseQueries
+        driver = createDriver(PageDatabase.Schema)
+        val json = Json { ignoreUnknownKeys = true }
+        database = PageDatabase(
+            driver = driver,
+            PageEntityAdapter = PageEntity.Adapter(
+                componentsAdapter = ComponentListAdapter(json),
+                footerAdapter = FooterAdapter(json)
+            )
+        )
+        queries = database.pageDatabaseQueries
     }
 
     @AfterTest
@@ -23,83 +34,61 @@ class AppDatabaseTest {
     }
 
     @Test
-    fun `insertPicture and selectAllPictures work correctly`() {
-        assertTrue(queries.selectAllPicturesEntities().executeAsList().isEmpty())
+    fun `insertPage and selectPageByName work correctly`() {
+        // Test that no pages exist initially
+        val initialPage = queries.selectPageByName("test-page").executeAsOneOrNull()
+        assertNull(initialPage)
 
-        queries.insertPictureEntity(
-            date = "2023-01-01",
-            explanation = "Explanation 1",
-            hdUrl = "hdurl1.com",
-            mediaType = "image",
-            serviceVersion = "v1",
-            title = "Title 1",
-            url = "url1.com"
+        // Insert a page
+        queries.insertPageEntity(
+            name = "test-page",
+            language = "en",
+            components = emptyList(),
+            footer = null
         )
 
-        var pictures = queries.selectAllPicturesEntities().executeAsList()
-        assertEquals(1, pictures.size)
-        assertEquals("2023-01-01", pictures[0].date)
-        assertEquals("Title 1", pictures[0].title)
-
-        queries.insertPictureEntity(
-            date = "2023-01-02",
-            explanation = "Explanation 2",
-            hdUrl = "hdurl2.com",
-            mediaType = "image",
-            serviceVersion = "v1",
-            title = "Title 2",
-            url = "url2.com"
-        )
-
-        pictures = queries.selectAllPicturesEntities().executeAsList()
-        assertEquals(2, pictures.size)
-        // Pictures should be ordered by date descending
-        assertEquals("2023-01-02", pictures[0].date)
-        assertEquals("2023-01-01", pictures[1].date)
+        // Verify the page was inserted
+        val insertedPage = queries.selectPageByName("test-page").executeAsOneOrNull()
+        assertNotNull(insertedPage)
+        assertEquals("test-page", insertedPage.name)
+        assertEquals("en", insertedPage.language)
+        assertTrue(insertedPage.components.isEmpty())
+        assertNull(insertedPage.footer)
     }
 
     @Test
-    fun `insertPicture replaces existing picture with same date`() {
-        queries.insertPictureEntity(
-            date = "2023-01-01",
-            explanation = "Initial Explanation",
-            hdUrl = "initialhdurl.com",
-            mediaType = "image",
-            serviceVersion = "v1",
-            title = "Initial Title",
-            url = "initialurl.com"
+    fun `insertPage replaces existing page with same name`() {
+        // Insert initial page
+        queries.insertPageEntity(
+            name = "test-page",
+            language = "en",
+            components = emptyList(),
+            footer = null
         )
 
-        var pictures = queries.selectAllPicturesEntities().executeAsList()
-        assertEquals(1, pictures.size)
-        assertEquals("Initial Title", pictures[0].title)
+        var page = queries.selectPageByName("test-page").executeAsOneOrNull()
+        assertNotNull(page)
+        assertEquals("en", page.language)
 
-        queries.insertPictureEntity(
-            date = "2023-01-01",
-            explanation = "Updated Explanation",
-            hdUrl = "updatedhdurl.com",
-            mediaType = "image",
-            serviceVersion = "v1",
-            title = "Updated Title",
-            url = "updatedurl.com"
+        // Replace with updated page
+        val testFooter = Footer(
+            id = "footer1",
+            sections = emptyList(),
+            socials = emptyList(),
+            copyright = "2023"
+        )
+        queries.insertPageEntity(
+            name = "test-page",
+            language = "fr",
+            components = emptyList(),
+            footer = testFooter
         )
 
-        pictures = queries.selectAllPicturesEntities().executeAsList()
-        assertEquals(1, pictures.size)
-        assertEquals("Updated Title", pictures[0].title)
-        assertEquals("Updated Explanation", pictures[0].explanation)
-    }
-
-    @Test
-    fun `deleteAllPictures removes all pictures`() {
-        queries.insertPictureEntity("2023-01-01", "E1", "h1", "image", "v1", "T1", "u1")
-        queries.insertPictureEntity("2023-01-02", "E2", "h2", "image", "v1", "T2", "u2")
-
-        var pictures = queries.selectAllPicturesEntities().executeAsList()
-        assertEquals(2, pictures.size)
-
-        queries.deleteAllPicturesEntities()
-        pictures = queries.selectAllPicturesEntities().executeAsList()
-        assertTrue(pictures.isEmpty())
+        page = queries.selectPageByName("test-page").executeAsOneOrNull()
+        assertNotNull(page)
+        assertEquals("fr", page.language)
+        assertTrue(page.components.isEmpty())
+        assertNotNull(page.footer)
+        assertEquals("footer1", page.footer?.id)
     }
 }
