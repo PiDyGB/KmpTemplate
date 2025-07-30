@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.mynasadailypics.kotlinComposeMultiplatformLibrary)
+    alias(libs.plugins.template.kotlinComposeMultiplatformLibrary)
 }
 
 kotlin {

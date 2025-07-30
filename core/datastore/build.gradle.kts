@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.mynasadailypics.kotlinMultiplatformLibrary)
-    alias(libs.plugins.mynasadailypics.kotlinMultiplatformTest)
+    alias(libs.plugins.template.kotlinMultiplatformLibrary)
+    alias(libs.plugins.template.kotlinMultiplatformTest)
 }
 
 kotlin {

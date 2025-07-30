@@ -1,0 +1,53 @@
+@file:Suppress("unused")
+
+package com.pidygb.template
+
+import com.android.build.api.dsl.LibraryExtension
+import com.pidygb.template.ext.alias
+import com.pidygb.template.ext.libs
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.invoke
+import org.jetbrains.compose.ComposeExtension
+import org.jetbrains.compose.ExperimentalComposeLibrary
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
+
+class KotlinComposeMultiplatformTestConventionPlugin : Plugin<Project> {
+    override fun apply(target: Project) {
+        with(target) {
+            alias(libs.findPlugin("template-kotlinMultiplatformTest"))
+            val composeDeps = extensions.getByType(ComposeExtension::class.java).dependencies
+            extensions.configure<KotlinMultiplatformExtension> {
+                sourceSets {
+                    commonTest.dependencies {
+                        @OptIn(ExperimentalComposeLibrary::class)
+                        implementation(composeDeps.uiTest)
+                    }
+                }
+                androidTarget {
+                    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+                    compilerOptions {
+                        jvmTarget.set(JvmTarget.JVM_11)
+                    }
+                    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+                    instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
+
+                    dependencies {
+                        "androidTestImplementation"(composeDeps.desktop.uiTestJUnit4)
+                        "debugImplementation"(libs.findLibrary("androidx-uiTestManifest").get())
+                    }
+                }
+            }
+            extensions.configure<LibraryExtension> {
+                defaultConfig {
+                    testInstrumentationRunner = "com.pidygb.template.core.testing.TestRunner"
+                }
+            }
+        }
+    }
+}

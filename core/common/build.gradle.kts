@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.mynasadailypics.kotlinMultiplatformLibrary)
-    alias(libs.plugins.mynasadailypics.kotlinMultiplatformTest)
-    alias(libs.plugins.mynasadailypics.kotlinxSerialization)
+    alias(libs.plugins.template.kotlinMultiplatformLibrary)
+    alias(libs.plugins.template.kotlinMultiplatformTest)
+    alias(libs.plugins.template.kotlinxSerialization)
 }
 
 kotlin {
@@ -11,6 +11,9 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(libs.koin.core)
+        }
+        commonTest.dependencies {
+            implementation(libs.turbine)
         }
     }
 }

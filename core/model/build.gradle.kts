@@ -1,4 +1,4 @@
 plugins {
-    alias(libs.plugins.mynasadailypics.kotlinMultiplatformLibrary)
-    alias(libs.plugins.mynasadailypics.kotlinxSerialization)
+    alias(libs.plugins.template.kotlinMultiplatformLibrary)
+    alias(libs.plugins.template.kotlinxSerialization)
 }

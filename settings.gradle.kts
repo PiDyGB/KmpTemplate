@@ -32,6 +32,8 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
+include(":feature")
+include(":feature:template")
 include(":core:common")
 include(":core:data")
 include(":core:datastore")

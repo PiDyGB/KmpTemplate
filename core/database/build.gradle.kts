@@ -1,8 +1,11 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.Framework
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
-    alias(libs.plugins.mynasadailypics.kotlinMultiplatformLibrary)
+    alias(libs.plugins.template.kotlinMultiplatformLibrary)
     alias(libs.plugins.sqldelight)
-    alias(libs.plugins.mynasadailypics.kotlinMultiplatformTest)
-    alias(libs.plugins.mynasadailypics.kotlinxSerialization)
+    alias(libs.plugins.template.kotlinMultiplatformTest)
+    alias(libs.plugins.template.kotlinxSerialization)
 }
 
 kotlin {
@@ -28,8 +31,8 @@ kotlin {
 
 sqldelight {
     databases {
-        create("PageDatabase") {
-            packageName.set("com.pidygb.mynasadailypics.core.database")
+        create("TemplateDatabase") {
+            packageName.set("com.pidygb.template.core.database")
         }
     }
 }

@@ -1,33 +1,36 @@
 import SwiftUI
-import Shared
+import Feature
 
 struct ContentView: View {
-    @State private var showContent = false
-    var body: some View {
-        VStack {
-            Button("Click me!") {
-                withAnimation {
-                    showContent = !showContent
-                }
-            }
+    @ObservedObject private(set) var viewModel: ViewModel
+    //@State private var composeSize = CGSize(width: 100, height: 100) // Initial size
 
-            if showContent {
-                VStack(spacing: 16) {
-                    Image(systemName: "swift")
-                        .font(.system(size: 200))
-                        .foregroundColor(.accentColor)
-                    Text("SwiftUI: \(Greeting().greet())")
-                }
-                .transition(.move(edge: .top).combined(with: .opacity))
+    var body: some View {
+        HStack {
+            switch viewModel.result {
+            case let error as CommonResultError:
+                Text(error.exception.message ?? "Unknown error")
+            case let success as CommonResultSuccess<NSString>:
+                Text(success.data! as String)
+            default:
+                ProgressView()
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .padding()
+        .task {
+            await viewModel.startObserving()
+        }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+extension ContentView {
+    @MainActor
+    class ViewModel: ObservableObject {
+        @Published var result: CommonResult = CommonResultLoading()
+
+        func startObserving() async {
+            for await value in TemplateViewModel().result {
+                self.result = value
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "com.pidygb.mynasadailypics.buildlogic"
+group = "com.pidygb.template.buildlogic"
 
 // Configure the build-logic plugins to focus on JDK 17
 // This matches the JDK used to build the project and is not related to what is running on a device.
@@ -36,28 +36,28 @@ gradlePlugin {
     plugins {
 
         register("kotlinMultiplatformLibrary") {
-            id = libs.plugins.mynasadailypics.kotlinMultiplatformLibrary.get().pluginId
-            implementationClass = "com.pidygb.mynasadailypics.KotlinMultiplatformLibraryConventionPlugin"
+            id = libs.plugins.template.kotlinMultiplatformLibrary.get().pluginId
+            implementationClass = "com.pidygb.template.KotlinMultiplatformLibraryConventionPlugin"
         }
 
         register("kotlinComposeMultiplatformLibrary") {
-            id = libs.plugins.mynasadailypics.kotlinComposeMultiplatformLibrary.get().pluginId
-            implementationClass = "com.pidygb.mynasadailypics.KotlinComposeMultiplatformLibraryConventionPlugin"
+            id = libs.plugins.template.kotlinComposeMultiplatformLibrary.get().pluginId
+            implementationClass = "com.pidygb.template.KotlinComposeMultiplatformLibraryConventionPlugin"
         }
 
         register("kotlinMultiplatformTest") {
-            id = libs.plugins.mynasadailypics.kotlinMultiplatformTest.get().pluginId
-            implementationClass = "com.pidygb.mynasadailypics.KotlinMultiplatformTestConventionPlugin"
+            id = libs.plugins.template.kotlinMultiplatformTest.get().pluginId
+            implementationClass = "com.pidygb.template.KotlinMultiplatformTestConventionPlugin"
         }
 
         register("kotlinComposeMultiplatformTest") {
-            id = libs.plugins.mynasadailypics.kotlinComposeMultiplatformTest.get().pluginId
-            implementationClass = "com.pidygb.mynasadailypics.KotlinComposeMultiplatformTestConventionPlugin"
+            id = libs.plugins.template.kotlinComposeMultiplatformTest.get().pluginId
+            implementationClass = "com.pidygb.template.KotlinComposeMultiplatformTestConventionPlugin"
         }
 
         register("kotlinxSerialization") {
-            id = libs.plugins.mynasadailypics.kotlinxSerialization.get().pluginId
-            implementationClass = "com.pidygb.mynasadailypics.KotlinxSerializationConventionPlugin"
+            id = libs.plugins.template.kotlinxSerialization.get().pluginId
+            implementationClass = "com.pidygb.template.KotlinxSerializationConventionPlugin"
         }
     }
 }

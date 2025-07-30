@@ -3,8 +3,8 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 import org.jetbrains.kotlin.konan.target.Family
 
 plugins {
-    alias(libs.plugins.mynasadailypics.kotlinMultiplatformLibrary)
-    alias(libs.plugins.mynasadailypics.kotlinMultiplatformTest)
+    alias(libs.plugins.template.kotlinMultiplatformLibrary)
+    alias(libs.plugins.template.kotlinMultiplatformTest)
 }
 
 kotlin {

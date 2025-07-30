@@ -21,8 +21,13 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.navigation3.ui)
+            implementation(libs.androidx.navigation3.runtime)
         }
+
         commonMain.dependencies {
+            implementation(projects.core.model)
+            implementation(projects.feature.template)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
@@ -31,7 +36,12 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
         }
+
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
@@ -39,11 +49,11 @@ kotlin {
 }
 
 android {
-    namespace = "com.pidygb.mynasadailypics.mynasadailypics"
+    namespace = "com.pidygb.template"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.pidygb.mynasadailypics.mynasadailypics"
+        applicationId = "com.pidygb.teamplate"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1

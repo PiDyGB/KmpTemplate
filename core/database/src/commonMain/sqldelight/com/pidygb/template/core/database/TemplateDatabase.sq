@@ -1,0 +1,8 @@
+CREATE TABLE TemplateEntity (
+    name TEXT NOT NULL PRIMARY KEY
+);
+
+-- Selects all samples from the table, ordered by date in descending order (newest first).
+selectAllTemplateEntities:
+SELECT * FROM TemplateEntity
+ORDER BY name DESC;
