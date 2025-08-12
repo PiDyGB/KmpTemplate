@@ -27,7 +27,7 @@ kotlin {
 
         commonMain.dependencies {
             implementation(projects.core.model)
-            implementation(projects.feature.template)
+            implementation(projects.feature)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)

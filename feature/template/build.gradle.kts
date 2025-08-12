@@ -10,8 +10,7 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.core.common)
             implementation(projects.core.ui)
-            implementation(projects.core.data)
-            implementation(projects.core.model)
+            implementation(projects.core.network)
 
             implementation(libs.bundles.coil)
         }

@@ -2,19 +2,16 @@ package com.pidygb.template.feature.template.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pidygb.template.core.common.Result
 import com.pidygb.template.core.common.asResult
-import kotlinx.coroutines.delay
+import com.pidygb.template.feature.template.data.repository.QuoteRepository
 import kotlinx.coroutines.flow.flow
 
-class TemplateViewModel : ViewModel() {
+class TemplateViewModel(
+    private val quoteRepository: QuoteRepository
+) : ViewModel() {
 
     val result = flow {
-        emit("Parsing response...")
-        delay(1_000)
-        emit(Result.Loading)
-        // Simulate some processing
-        delay(5_000)
-        emit("Hello, Template!")
+        val quote = quoteRepository.getQuote()
+        emit("\"${quote.text}\" - ${quote.author}")
     }.asResult<String>(viewModelScope)
 }
