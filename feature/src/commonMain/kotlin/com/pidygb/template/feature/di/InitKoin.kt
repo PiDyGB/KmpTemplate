@@ -1,4 +1,4 @@
-package com.pidygb.template.di
+package com.pidygb.template.feature.di
 
 import com.pidygb.template.feature.template.di.templateModule
 import org.koin.core.context.startKoin
@@ -10,3 +10,4 @@ fun initKoin(config: KoinAppDeclaration? = null) {
         modules(templateModule)
     }
 }
+

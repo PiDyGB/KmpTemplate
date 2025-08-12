@@ -28,7 +28,7 @@ extension ContentView {
         @Published var result: CommonResult = CommonResultLoading()
 
         func startObserving() async {
-            for await value in TemplateViewModel().result {
+            for await value in TemplateViewModelKt.get().result {
                 self.result = value
             }
         }
