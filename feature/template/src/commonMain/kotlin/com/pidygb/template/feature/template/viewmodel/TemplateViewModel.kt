@@ -3,18 +3,18 @@ package com.pidygb.template.feature.template.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pidygb.template.core.common.asResult
-import com.pidygb.template.feature.template.data.repository.QuoteRepository
+import com.pidygb.template.feature.template.domain.usecase.GetRandomContentUseCase
 import kotlinx.coroutines.flow.flow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class TemplateViewModel(
-    private val quoteRepository: QuoteRepository
+    private val getRandomContentUseCase: GetRandomContentUseCase
 ) : ViewModel() {
 
     val result = flow {
-        val quote = quoteRepository.getQuote()
-        emit("\"${quote.text}\" - ${quote.author}")
+        val content = getRandomContentUseCase()
+        emit(content)
     }.asResult<String>(viewModelScope)
 }
 

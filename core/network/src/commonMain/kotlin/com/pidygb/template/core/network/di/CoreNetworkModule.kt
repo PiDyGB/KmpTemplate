@@ -1,5 +1,7 @@
 package com.pidygb.template.core.network.di
 
+import com.pidygb.template.core.network.KtorTodoNetworkDataSource
+import com.pidygb.template.core.network.TodoNetworkDataSource
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import io.ktor.client.*
@@ -10,6 +12,8 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 import org.koin.core.module.Module
+import org.koin.core.module.dsl.factoryOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 private val httpClientModule = module {
@@ -36,6 +40,8 @@ private val httpClientModule = module {
             }
         }.also { Napier.base(DebugAntilog()) }
     }
+
+    factoryOf(::KtorTodoNetworkDataSource) bind TodoNetworkDataSource::class
 }
 
 fun Module.includesCoreNetworkModule() {
